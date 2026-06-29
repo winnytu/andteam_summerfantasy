@@ -1,0 +1,115 @@
+@import "tailwindcss";
+
+:root {
+  --color-summer-blue:    #74B9FF;
+  --color-sunset-orange:  #FF8C42;
+  --color-cream-white:    #FFF9EE;
+  --color-retro-gold:     #FFD54F;
+  --color-pixel-border:   #4A3018;
+  --color-hp-green:       #4CD137;
+  --color-damage-red:     #E84118;
+  --color-office-bg:      #1E2749;
+  --color-office-dark:    #151B34;
+}
+
+@font-face {
+  font-family: 'PixelFont';
+  src: url('./assets/pixelfont.ttf') format('truetype');
+  font-weight: normal;
+  font-style: normal;
+  font-display: swap;
+}
+
+@layer base {
+  * {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+  }
+
+  html {
+    scroll-behavior: smooth;
+  }
+
+  body {
+    font-family: 'PixelFont', 'Segoe UI', system-ui, -apple-system, sans-serif;
+    overflow-x: hidden;
+    background: var(--color-office-dark);
+    color: #fff;
+  }
+
+  ::-webkit-scrollbar {
+    width: 6px;
+  }
+
+  ::-webkit-scrollbar-track {
+    background: var(--color-office-dark);
+  }
+
+  ::-webkit-scrollbar-thumb {
+    background: var(--color-summer-blue);
+    border-radius: 3px;
+  }
+}
+
+@layer utilities {
+  .text-shadow-glow {
+    text-shadow: 0 0 20px rgba(255, 213, 79, 0.8), 0 0 40px rgba(255, 140, 66, 0.5);
+  }
+
+  .shimmer {
+    animation: shimmer 2s infinite;
+  }
+
+  @keyframes shimmer {
+    0%, 100% { opacity: 1; }
+    50% { opacity: 0.6; }
+  }
+
+  @keyframes floatDown {
+    0% { transform: translateY(-80px) rotate(-10deg); opacity: 0; }
+    60% { opacity: 1; }
+    100% { transform: translateY(0) rotate(0deg); opacity: 1; }
+  }
+
+  @keyframes hpPulse {
+    0%, 100% { box-shadow: 0 0 8px #4CD137; }
+    50% { box-shadow: 0 0 24px #a8ff8a, 0 0 48px #4CD137; }
+  }
+
+  @keyframes shake {
+    0%, 100% { transform: translateX(0); }
+    20% { transform: translateX(-8px); }
+    40% { transform: translateX(8px); }
+    60% { transform: translateX(-6px); }
+    80% { transform: translateX(6px); }
+  }
+
+  .animate-shake {
+    animation: shake 0.4s ease-in-out;
+  }
+
+  @keyframes bounce-in {
+    0% { transform: scale(0.5); opacity: 0; }
+    70% { transform: scale(1.1); }
+    100% { transform: scale(1); opacity: 1; }
+  }
+
+  .animate-bounce-in {
+    animation: bounce-in 0.5s ease-out forwards;
+  }
+
+  @keyframes slide-up {
+    from { transform: translateY(30px); opacity: 0; }
+    to { transform: translateY(0); opacity: 1; }
+  }
+
+  .animate-slide-up {
+    animation: slide-up 0.6s ease-out forwards;
+  }
+
+  @keyframes cursor-ping-pong {
+    0% { left: 4px; }
+    100% { left: calc(100% - 20px); }
+  }
+}
