@@ -18,9 +18,9 @@ function getResult(a, b) {
 }
 
 const RESULT_INFO = {
-  holy:   { label: 'Holy Jiǎo', en: 'Blessing granted', icon: '✨', color: 'text-yellow-300', border: 'border-yellow-400', bg: 'bg-yellow-400/10' },
-  laugh:  { label: 'Laughing Jiǎo', en: 'The gods are laughing', icon: '😆', color: 'text-orange-300', border: 'border-orange-400', bg: 'bg-orange-400/10' },
-  yin:    { label: 'Silent Jiǎo', en: 'No answer', icon: '🌑', color: 'text-blue-300', border: 'border-blue-500', bg: 'bg-blue-500/10' },
+  holy:   { label: 'Holy Jiǎo', color: 'text-yellow-300', border: 'border-yellow-400', bg: 'bg-yellow-400/10' },
+  laugh:  { label: 'Laughing Jiǎo', color: 'text-orange-300', border: 'border-orange-400', bg: 'bg-orange-400/10' },
+  yin:    { label: 'Silent Jiǎo', color: 'text-blue-300', border: 'border-blue-500', bg: 'bg-blue-500/10' },
 }
 
 export default function Game2Timing() {
@@ -85,8 +85,6 @@ export default function Game2Timing() {
 
   return (
     <div className="flex flex-col items-center justify-center gap-5 w-full h-full max-w-sm mx-auto overflow-y-auto py-2">
-
-      {/* 標題 + 簡短敘事 */}
       <div className="text-center px-2">
         <p className="text-xs leading-relaxed" style={{ color: 'rgba(255,220,160,0.65)' }}>
           Too many unknowns on this road. I need the gods on my side.
@@ -136,7 +134,6 @@ export default function Game2Timing() {
             {result ? (
               <div className={`flex flex-col items-center gap-2 font-black text-base ${RESULT_INFO[result].color}`}>
                 <p>{RESULT_INFO[result].label}</p>
-                <p className="text-xs font-semibold opacity-60">{RESULT_INFO[result].en}</p>
               </div>
             ) : (
               <div className="flex gap-4 text-xs" style={{ color: 'rgba(156,163,175,0.6)' }}>

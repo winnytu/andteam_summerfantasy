@@ -85,14 +85,6 @@ export default function CatchGame({ onComplete }) {
     return () => { clearTimeout(t); audio.pause() }
   }, [])
 
-  const handleTapToStart = useCallback(async () => {
-    const audio = audioRef.current
-    if (!audio) return
-    setNeedsTap(false)
-    await audio.play()
-    setIsPlaying(true)
-  }, [])
-
   const toggleMute = useCallback(() => {
     const audio = audioRef.current
     if (!audio) return
@@ -195,7 +187,6 @@ export default function CatchGame({ onComplete }) {
         setPlayerX(playerXRef.current)
       }
 
-      // 隨機生成（40% 機率一次掉 2 個）
       if (now - lastSpawnRef.current > SPAWN_INTERVAL) {
         lastSpawnRef.current = now
         spawnIcon(Math.random() < 0.4 ? 2 : 1)
@@ -273,10 +264,7 @@ export default function CatchGame({ onComplete }) {
       onTouchEnd={handleTouchEnd}
       onTouchCancel={handleTouchEnd}
     >
-      {/* ── 頂部資訊區（由上往下疊，pt 留出 HP 條空間）── */}
       <div className="absolute top-0 left-0 right-0 z-20 flex flex-col items-center pt-16 gap-1 pointer-events-none">
-        {/* 字幕 */}
-        {/* Chapter badge */}
         <div className="items-center gap-1.5 backdrop-blur-sm rounded-full px-3 py-1 text-[10px] font-semibold tracking-widest uppercase" style={{ background: 'rgba(74,48,24,0.35)', color: 'rgba(255,249,238,0.7)', border: '1px solid rgba(74,48,24,0.4)' }}>
           
         </div>
@@ -285,10 +273,9 @@ export default function CatchGame({ onComplete }) {
           <p className='text-[10px] mt-1'>{subtitle}</p>
         </div>
 
-        {/* Chapter badge */}
         <p className='text-[10px] font-semibold tracking-widest uppercase' style={{ color: 'rgba(255,249,238,0.35)' }}>{moveHint}</p>
 
-        {/* 成員收集排 */}
+
         <div className="flex flex-col items-center gap-0.5 mt-2">
           <div className="text-[8px] font-bold" style={{ color: 'rgba(255,249,238,0.5)' }}>
             Catch all members · {collected.size}/{TOTAL_MEMBERS}
@@ -347,19 +334,6 @@ export default function CatchGame({ onComplete }) {
         {/* 玩家 */}
         <PlayerSprite x={playerX} groundY={groundY} />
 
-        {/* autoplay 被擋時的點擊遮罩 */}
-        {needsTap && (
-          <div
-            className="absolute inset-0 z-50 flex flex-col items-center justify-center bg-black/50 backdrop-blur-sm cursor-pointer"
-            onClick={handleTapToStart}
-          >
-            <div className="text-5xl mb-3 animate-bounce">🎵</div>
-            <p className="text-white font-black text-lg">Tap to Play</p>
-            <p className="text-white/60 text-xs mt-1">Aoarashi / &TEAM</p>
-          </div>
-        )}
-
-        {/* 通關遮罩 */}
         {showCTA && (
           <div className="absolute inset-0 z-40 flex flex-col items-center justify-center gap-4 px-6 bg-black/40 backdrop-blur-sm animate-slide-up">
             <div className="rounded-3xl px-7 py-6 max-w-sm text-center" style={{ background: 'rgba(21,27,52,0.75)', border: '2px solid rgba(255,213,79,0.5)', boxShadow: '0 0 32px rgba(255,213,79,0.2)' }}>

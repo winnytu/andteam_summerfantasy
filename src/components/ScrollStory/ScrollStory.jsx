@@ -15,9 +15,8 @@ export default function ScrollStory() {
   const [phase, setPhase] = useState('section1')
   const [scrollProgress, setScrollProgress] = useState(0)
   const [transitionVisible, setTransitionVisible] = useState(false)
-  const [showSkipBtn, setShowSkipBtn] = useState(false)
 
-  // 逐行出現閾值
+  // 逐行出現
   const P0 = 0.03   // 章節標題
   const P1 = 0.18   // 行一
   const P2 = 0.32   // 行二
@@ -48,9 +47,6 @@ export default function ScrollStory() {
       setHp(newHp)
       setScrollProgress(progress)
 
-      // 顯示跳過按鈕（捲了 30% 就可以跳）
-      if (progress > 0.3) setShowSkipBtn(true)
-
       // 捲到 85% 即觸發（更寬鬆）
       if (progress >= 0.85) {
         enterTransition()
@@ -65,7 +61,7 @@ export default function ScrollStory() {
     setPhase('transition')
   }
 
-  // ─── 過渡動畫（只做淡入，不自動跳轉）─────────────────────
+  // 過渡動畫
   useEffect(() => {
     if (phase !== 'transition') return
     const t = setTimeout(() => setTransitionVisible(true), 80)
@@ -128,7 +124,6 @@ export default function ScrollStory() {
     )
   }
 
-  // ─── Section 1：捲動畫面 ──────────────────────────────
   return (
     <div
       ref={containerRef}
@@ -137,12 +132,10 @@ export default function ScrollStory() {
     >
       <HPBar />
 
-      {/* 人物在大樓前街道 */}
       <div className="fixed bottom-4 left-6 z-40">
         <PlayerIdle />
       </div>
 
-      {/* 背景圖：錨定底部，讓大樓貼地 */}
       <div
         className="fixed inset-0 -z-10"
         style={{
@@ -153,10 +146,8 @@ export default function ScrollStory() {
         }}
       />
 
-      {/* 靜態半透明遮罩，讓文字可讀 */}
       <div className="fixed inset-0 -z-10 bg-black/30" />
 
-      {/* ── 捲動段落區（文字浮在天空上半部）── */}
       <section
         className="flex flex-col items-center justify-center px-6 relative"
         style={{ minHeight: '340vh' }}

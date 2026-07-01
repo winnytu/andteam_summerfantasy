@@ -30,7 +30,6 @@ export default function StartScreen() {
 
   return (
     <div className="relative min-h-screen flex flex-col overflow-hidden" style={{ background: '#0d2040' }}>
-      {/* 全螢幕背景圖 */}
       <img
         src={mainBg}
         alt="Summer Fantasy"
@@ -38,21 +37,17 @@ export default function StartScreen() {
         style={{ imageRendering: 'pixelated', objectPosition: 'center center' }}
       />
 
-      {/* 上方輕遮罩：讓文字在藍天上可讀，不遮太深 */}
       <div
         className="absolute inset-x-0 top-0 h-48 pointer-events-none"
         style={{ background: 'linear-gradient(to bottom, rgba(10,24,58,0.58) 0%, transparent 100%)' }}
       />
 
-      {/* 下方遮罩：覆蓋沙灘讓按鈕區清晰 */}
       <div
         className="absolute inset-x-0 bottom-0 h-72 pointer-events-none"
         style={{ background: 'linear-gradient(to top, rgba(10,24,58,0.80) 0%, rgba(10,24,58,0.20) 60%, transparent 100%)' }}
       />
 
-      {/* ── 頂部標題區（天空）── */}
       <div className="relative z-10 flex flex-col items-center pt-10 px-6 text-center animate-slide-up">
-        {/* &TEAM 徽章 */}
         <div
           className="inline-flex items-center gap-2 rounded-full px-5 py-1.5 text-xs font-semibold tracking-widest uppercase mb-5"
           style={{ background: 'rgba(255,255,255,0.18)', border: '1px solid rgba(255,255,255,0.45)', color: '#fff' }}
@@ -60,7 +55,6 @@ export default function StartScreen() {
           &TEAM Fan Project
         </div>
 
-        {/* 主標題 */}
         <h1 className="font-black leading-tight" style={{ textShadow: '0 3px 18px rgba(10,24,58,0.55)' }}>
           <div className="text-white mb-1 mt-1" style={{ fontSize: 'clamp(1.8rem, 7vw, 3.2rem)' }}>
             The Way to You
@@ -80,7 +74,6 @@ export default function StartScreen() {
         </h1>
       </div>
 
-      {/* ── 中間成員浮牌（雲層前景）── */}
       <div
         className="relative z-10 flex flex-col items-center mt-auto mb-4 animate-slide-up"
         style={{ animationDelay: '0.3s' }}
@@ -98,7 +91,6 @@ export default function StartScreen() {
         </div>
       </div>
 
-      {/* ── 底部按鈕區（沙灘）── */}
       <div
         className="relative z-10 flex flex-col items-center gap-3 pb-24 px-6 text-center animate-slide-up"
         style={{ animationDelay: '0.5s' }}

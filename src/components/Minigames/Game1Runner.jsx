@@ -21,7 +21,6 @@ export default function Game1Runner() {
   const canvasRef = useRef(null)
   const wrapRef = useRef(null)
 
-  // 動態 canvas 尺寸（ref，不會觸發 re-render）
   const cwRef = useRef(700)
   const chRef = useRef(320)
 
@@ -37,7 +36,7 @@ export default function Game1Runner() {
   const [gameStatus, setGameStatus] = useState('idle')
   const [shake, setShake] = useState(false)
 
-  // 初始化 state（使用動態尺寸）
+  // 初始化 state
   const makeInitState = useCallback(() => {
     const ch = chRef.current
     const groundY = ch - 50
@@ -62,7 +61,6 @@ export default function Game1Runner() {
     const sprite = new Image(); sprite.src = meRunSrc; sprite.onload = () => { spriteImgRef.current = sprite }
   }, [])
 
-  // ── ResizeObserver：canvas 跟容器同寬高 ──
   useEffect(() => {
     const wrap = wrapRef.current
     if (!wrap) return
@@ -240,7 +238,6 @@ export default function Game1Runner() {
         <span className="font-bold text-sm w-10 text-right tabular-nums" style={{ color: '#FFD54F' }}>{fund}%</span>
       </div>
 
-      {/* Canvas 容器 — 填滿剩餘高度 */}
       <div
         ref={wrapRef}
         className={`relative flex-1 rounded-2xl overflow-hidden cursor-pointer min-h-0 ${shake ? 'animate-shake' : ''}`}
@@ -293,15 +290,6 @@ export default function Game1Runner() {
 }
 
 function drawBg(ctx, cw, ch, groundY, img, bgOffset) {
-  if (!img) {
-    const grad = ctx.createLinearGradient(0, 0, 0, ch)
-    grad.addColorStop(0, '#4c1d95')
-    grad.addColorStop(1, '#1e1b4b')
-    ctx.fillStyle = grad
-    ctx.fillRect(0, 0, cw, ch)
-    return
-  }
-
   // 多畫 1px 重疊消除拼接縫隙
   const imgDrawW = Math.ceil((img.naturalWidth / img.naturalHeight) * ch)
   let x = bgOffset
@@ -355,14 +343,6 @@ function drawBill(ctx, o, img) {
     const drawH = o.h * 1.4
     const drawW = drawH * aspect
     ctx.drawImage(img, o.x + (o.w - drawW) / 2, o.y + o.h - drawH, drawW, drawH)
-  } else {
-    ctx.fillStyle = '#fef3c7'
-    roundRect(ctx, o.x, o.y, o.w, o.h, 3)
-    ctx.fill()
-    ctx.fillStyle = '#dc2626'
-    ctx.font = 'bold 14px sans-serif'
-    ctx.textAlign = 'center'
-    ctx.fillText('¥', o.x + o.w / 2, o.y + o.h - 6)
   }
 }
 
@@ -370,27 +350,5 @@ function drawCoin(ctx, c, img) {
   if (img) {
     const size = c.r * 2.4
     ctx.drawImage(img, c.x - size / 2, c.y - size / 2, size, size)
-  } else {
-    const grad = ctx.createRadialGradient(c.x - 3, c.y - 3, 2, c.x, c.y, c.r)
-    grad.addColorStop(0, '#fde68a')
-    grad.addColorStop(1, '#d97706')
-    ctx.fillStyle = grad
-    ctx.beginPath()
-    ctx.arc(c.x, c.y, c.r, 0, Math.PI * 2)
-    ctx.fill()
   }
-}
-
-function roundRect(ctx, x, y, w, h, r) {
-  ctx.beginPath()
-  ctx.moveTo(x + r, y)
-  ctx.lineTo(x + w - r, y)
-  ctx.quadraticCurveTo(x + w, y, x + w, y + r)
-  ctx.lineTo(x + w, y + h - r)
-  ctx.quadraticCurveTo(x + w, y + h, x + w - r, y + h)
-  ctx.lineTo(x + r, y + h)
-  ctx.quadraticCurveTo(x, y + h, x, y + h - r)
-  ctx.lineTo(x, y + r)
-  ctx.quadraticCurveTo(x, y, x + r, y)
-  ctx.closePath()
 }

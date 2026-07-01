@@ -118,14 +118,11 @@ export default function Game3DragDrop() {
   return (
     <div className="flex flex-col items-center justify-center w-full h-full overflow-y-auto">
     <div className="flex flex-col gap-4 w-full max-w-sm mx-auto py-4">
-
-      {/* 敘事 + 語意提示 */}
       <div className="text-center">
         <p className="text-xs leading-relaxed mb-3" style={{ color: 'rgba(249,168,212,0.65)' }}>
           I've practised these lines a hundred times.<br />
           Just hoping I don't blank out when I meet you.
         </p>
-        {/* 語意提示 */}
         <p className="text-xs italic" style={{ color: 'rgba(255,249,238,0.45)' }}>
           "{current.meaning}"
         </p>
