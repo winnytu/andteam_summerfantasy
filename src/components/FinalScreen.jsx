@@ -97,11 +97,6 @@ export default function FinalScreen() {
             I Want to See &TEAM!
             {!fired && <div className="absolute -inset-1 rounded-full bg-gradient-to-r from-yellow-400 via-orange-400 to-rose-500 blur opacity-30 group-hover:opacity-60 transition-opacity -z-10" />}
           </button>
-          {fired && (
-            <p className="mt-3 text-xs" style={{ color: 'rgba(255,249,238,0.5)' }}>
-              Made with ♥ for &TEAM · Summer Fantasy
-            </p>
-          )}
         </div>
 
       </div>

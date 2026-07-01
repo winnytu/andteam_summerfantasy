@@ -153,7 +153,7 @@ export default function Game3DragDrop() {
 
       {/* 提示文字 */}
       <p className="text-center text-[11px]" style={{ color: 'rgba(116,185,255,0.45)' }}>
-        {selected.length === 0 ? orderHint : `${selected.length} / ${current.words.length} · keep going!`}
+          {orderHint}
       </p>
 
       {/* 單字按鈕 */}
