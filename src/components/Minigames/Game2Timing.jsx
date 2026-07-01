@@ -108,7 +108,7 @@ export default function Game2Timing() {
       ) : (
         <>
           {/* 已收集聖筊 */}
-          <div className="flex gap-6 items-end">
+          <div className="flex gap-3 items-end">
             {Array.from({ length: NEEDED }).map((_, i) => (
               <div key={i} className="flex flex-col items-center gap-1.5">
                 <div className={`transition-all duration-500 ${i < holy ? 'scale-110' : 'scale-90 opacity-25'}`}>
@@ -132,11 +132,11 @@ export default function Game2Timing() {
           </div>
 
           {/* 結果顯示 */}
-          <div className="h-7 flex items-center justify-center">
+          <div className="h-10 flex items-center justify-center">
             {result ? (
-              <div className={`flex items-center gap-2 font-black text-base ${RESULT_INFO[result].color}`}>
-                <span>{RESULT_INFO[result].label}</span>
-                <span className="text-xs font-semibold opacity-60">· {RESULT_INFO[result].en}</span>
+              <div className={`flex flex-col items-center gap-2 font-black text-base ${RESULT_INFO[result].color}`}>
+                <p>{RESULT_INFO[result].label}</p>
+                <p className="text-xs font-semibold opacity-60">{RESULT_INFO[result].en}</p>
               </div>
             ) : (
               <div className="flex gap-4 text-xs" style={{ color: 'rgba(156,163,175,0.6)' }}>
@@ -203,7 +203,7 @@ function JiaoPiece({ yang, spinning, lit, flip = false }) {
 // ── Pair of jiǎo for progress slots ───────────────────
 function JiaoPair({ lit }) {
   return (
-    <div className="flex gap-2">
+    <div className="flex gap-1">
       <JiaoPiece yang={false} spinning={false} lit={lit} flip={true} />
       <JiaoPiece yang={true}  spinning={false} lit={lit} flip={true} />
     </div>

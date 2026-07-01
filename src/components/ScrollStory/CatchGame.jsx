@@ -276,15 +276,17 @@ export default function CatchGame({ onComplete }) {
       {/* ── 頂部資訊區（由上往下疊，pt 留出 HP 條空間）── */}
       <div className="absolute top-0 left-0 right-0 z-20 flex flex-col items-center pt-16 gap-1 pointer-events-none">
         {/* 字幕 */}
-        <div className="bg-black/35 backdrop-blur-sm rounded-full px-4 py-1.5 text-white font-semibold text-xs max-w-[280px] text-center leading-relaxed">
-          {subtitle}
+        {/* Chapter badge */}
+        <div className="items-center gap-1.5 backdrop-blur-sm rounded-full px-3 py-1 text-[10px] font-semibold tracking-widest uppercase" style={{ background: 'rgba(74,48,24,0.35)', color: 'rgba(255,249,238,0.7)', border: '1px solid rgba(74,48,24,0.4)' }}>
+          
+        </div>
+        <div className="bg-black/35 backdrop-blur-sm rounded-full px-4 py-1.5 text-white font-semibold text-xs max-w-[300px] text-center leading-relaxed">
+          Chapter 02 · Summer Recharge
+          <p className='text-[10px] mt-1'>{subtitle}</p>
         </div>
 
         {/* Chapter badge */}
-        <div className="inline-flex items-center gap-1.5 backdrop-blur-sm rounded-full px-3 py-1 text-[10px] font-semibold tracking-widest uppercase" style={{ background: 'rgba(74,48,24,0.35)', color: 'rgba(255,249,238,0.7)', border: '1px solid rgba(74,48,24,0.4)' }}>
-          Chapter 02 · Summer Recharge
-          <span style={{ color: 'rgba(255,249,238,0.35)' }}>· {moveHint}</span>
-        </div>
+        <p className='text-[10px] font-semibold tracking-widest uppercase' style={{ color: 'rgba(255,249,238,0.35)' }}>{moveHint}</p>
 
         {/* 成員收集排 */}
         <div className="flex flex-col items-center gap-0.5 mt-2">
@@ -356,10 +358,6 @@ export default function CatchGame({ onComplete }) {
             <p className="text-white/60 text-xs mt-1">Aoarashi / &TEAM</p>
           </div>
         )}
-
-
-        {/* 操作提示 */}
-        <div className="absolute bottom-24 right-3 text-[10px] font-semibold" style={{ color: 'rgba(255,255,255,0.35)' }}>{moveHint}</div>
 
         {/* 通關遮罩 */}
         {showCTA && (
